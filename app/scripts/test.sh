@@ -1,14 +1,20 @@
-# API
-echo "Building and pushing API image..."
-cd ../backend/API || exit 1
-docker build -t api .
-if [ $? -ne 0 ]; then
-    echo "API build failed. Exiting script."
+#! /bin/bash
+#!bin/bash
+clear
+
+echo "Do you want to start the docker containers ? (y/n) "
+read startContainerVar
+
+if [ $startContainerVar == "y" ]
+then
+    echo "Starting services with Docker Compose..."
+else
+    echo "Exiting script."
     exit 1
 fi
-docker tag api "$API_IMAGE"
-docker push "$API_IMAGE"
-if [ $? -ne 0 ]; then
-    echo "API push failed. Exiting script."
-    exit 1
-fi
+# count="str"
+
+# if [ $count == "str" ]
+# then
+#     echo "The condition is true"
+# fi

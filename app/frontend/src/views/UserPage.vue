@@ -23,19 +23,39 @@ export default {
         name: '',
         email: '',
       },
+      API_URL: '', // Initialisé dynamiquement
     }
   },
-  mounted() {
+  async mounted() {
+    await this.loadConfig()
     this.fetchUsers()
   },
   methods: {
+    async loadConfig() {
+      try {
+        const response = await axios.get('/env-config.js');
+        eval(response.data); // Exécute et initialise window.env
+        console.log(response.data);
+        console.log("env-config.js loaded:", window.env);
+        if (window.env && window.env.VUE_APP_API_URL) {
+          this.API_URL = window.env.VUE_APP_API_URL;
+          console.log("API_URL loaded:", this.API_URL);
+        } else {
+          console.error("VUE_APP_API_URL not found in env-config.js");
+          this.API_URL = 'http://localhost:8080/'; // Fallback URL
+        }
+      } catch (error) {
+        console.error("Error loading env-config.js:", error);
+        this.API_URL = 'http://localhost:8080/'; // Fallback URL
+      }
+    },
+
     async fetchUsers() {
-      const response = await axios.get('http://localhost:8080/users/all')
+      const response = await axios.get(`${this.API_URL}users/all`)
       this.users = response.data
     },
     async addUser() {
-      console.log('added')
-      await axios.post('http://localhost:8080/users/add', this.newUser)
+      await axios.post(`${this.API_URL}users/add`, this.newUser)
       this.fetchUsers()
       this.newUser = { name: '', email: '' }
     },

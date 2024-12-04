@@ -17,6 +17,9 @@ spec:
       containers:
         - name: frontend
           image: fowx/cloudproject_frontend:latest
+          env:
+            - name: VUE_APP_API_URL
+              value: http://127.0.0.1:8080/api/
           ports:
             - containerPort: 80
           resources:
@@ -33,13 +36,12 @@ kind: Service
 metadata:
   labels:
     app: frontend
-  name: frontend
+  name: frontend-service
 spec:
   ports:
-    - name: frontend
-      port: 5173
+    - port: 5173
       protocol: TCP
-      targetPort: 80
+      targetPort: 80 
   selector:
     app: frontend
   type: LoadBalancer
@@ -52,6 +54,7 @@ metadata:
 spec:
   hosts:
     - frontend.local
+    - 127.0.0.1
   gateways:
     - frontend-gateway
   http:
@@ -59,20 +62,4 @@ spec:
         - destination:
             host: frontend-service
             port:
-              number: 80
-
----
-apiVersion: networking.istio.io/v1beta1
-kind: Gateway
-metadata:
-  name: frontend-gateway
-spec:
-  selector:
-    istio: ingressgateway
-  servers:
-    - port:
-        number: 80
-        name: http
-        protocol: HTTP
-      hosts:
-        - "*"
+              number: 5173 

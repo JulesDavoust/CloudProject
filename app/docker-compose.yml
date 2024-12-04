@@ -3,7 +3,7 @@ version: '3.8'
 services:
   frontend:
     build: ./frontend
-    image: fowx/cloudproject_frontend:latest
+    image: ${FRONTEND_IMAGE}
     container_name: frontend-container
     ports:
       - "5173:80"
@@ -14,7 +14,7 @@ services:
 
   api:
     build: ./backend/API
-    image: fowx/cloudproject_api:latest
+    image: ${API_IMAGE}
     container_name: api-container
     ports:
       - "8080:8080"
@@ -30,7 +30,7 @@ services:
 
   database:
     build: ./backend/Database
-    image: fowx/cloudproject_database:latest
+    image: ${DATABASE_IMAGE}
     container_name: database-container
     environment:
       MYSQL_ROOT_PASSWORD: CloudSoftware_#2025!
