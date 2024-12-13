@@ -2,6 +2,7 @@
 
 kubectl create namespace dev
 kubectl config set-context --current --namespace=dev
+kubectl label namespace dev istio-injection=enabled
 
 read -p "Do you want to create global gateway ? (y/n) " globalGatewayVar
 if [ $globalGatewayVar == "y" ]

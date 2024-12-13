@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: database
+  name: database-deployment
   labels:
     app: database
 spec:
@@ -41,21 +41,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: database
+  name: database-service
 spec:
   ports:
     - port: 3306
       targetPort: 3306
   selector:
     app: database
-
----
-
-apiVersion: security.istio.io/v1beta1
-kind: PeerAuthentication
-metadata:
-  name: dev
-  namespace: dev
-spec:
-  mtls:
-    mode: STRICT

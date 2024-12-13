@@ -8,13 +8,15 @@ spec:
   servers:
     - port:
         number: 5173
-        name: http
-        protocol: HTTP
+        name: https
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: istio-ingressgateway-certs
       hosts:
         - "*"
 
 ---
-
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:

@@ -43,23 +43,6 @@ done
 
 echo "Mise à jour des images dans $ENV_FILE terminée."
 
-
-# Rentrer repo Docker
-# echo "Enter your docker repository for the frontend image : "
-# read -p "$DOCKER_USERNAME/" REPO_FRONTEND
-
-# REPO_FRONTEND="$DOCKER_USERNAME/$REPO_FRONTEND"
-
-# echo "Enter your docker repository for the API image : "
-# read -p "$DOCKER_USERNAME/" REPO_API
-
-# REPO_API="$DOCKER_USERNAME/$REPO_API"
-
-# echo "Enter your docker repository for the BDD image : "
-# read -p "$DOCKER_USERNAME/" REPO_BDD
-
-# REPO_BDD="$DOCKER_USERNAME/$REPO_BDD"
-
 # Construire les images
 echo "Building images with Docker Compose..."
 docker-compose build || {

@@ -89,14 +89,3 @@ spec:
     - from:
         - source:
             principals: ["cluster.local/ns/dev/sa/database"]
-
----
-
-apiVersion: security.istio.io/v1beta1
-kind: PeerAuthentication
-metadata:
-  name: dev
-  namespace: dev
-spec:
-  mtls:
-    mode: STRICT
