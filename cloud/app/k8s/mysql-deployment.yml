@@ -17,7 +17,7 @@ spec:
           image: fowx/cloudproject_database:my_db2
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "KarmaFowx27062018!"
+              value: "YourPassword"
             - name: MYSQL_DATABASE
               value: "clouddatabase"
             - name: MYSQL_USER

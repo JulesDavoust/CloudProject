@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: fowx/cloudproject_api:v1.5
+          image: fowx/cloudproject_api:v3.1
           env:
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:mysql://mysql:3306/clouddatabase?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC"

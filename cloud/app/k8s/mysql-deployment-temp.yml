@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: fowx/cloudproject_database:v1.4
+          image: fowx/cloudproject_database:v3.1
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "KarmaFowx27062018!"
+              value: "YourPassword"
             - name: MYSQL_DATABASE
               value: "clouddatabase"
             - name: MYSQL_USER
